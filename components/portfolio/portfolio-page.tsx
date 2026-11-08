@@ -306,6 +306,7 @@ export default function PortfolioPage() {
           <LinktreeView
             onSwitchToFull={() => handleViewModeChange('full')}
             theme={theme}
+            onToggleTheme={toggleTheme}
           />
           <MobileViewToggle mode={viewMode} onChange={handleViewModeChange} />
         </>

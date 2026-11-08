@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Share2, Check, ExternalLink, Copy } from 'lucide-react'
+import { ExternalLink, Copy, Smartphone, Moon, Sun } from 'lucide-react'
 
 type LinktreeViewProps = {
   onSwitchToFull: () => void
   theme?: 'dark' | 'light'
+  onToggleTheme?: () => void
 }
 
 type LinkItem = {
@@ -196,27 +197,9 @@ function renderLinkIcon(type: LinkItem['icon']) {
   }
 }
 
-export function LinktreeView({ onSwitchToFull }: LinktreeViewProps) {
+export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: LinktreeViewProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
-
-  const handleShare = async () => {
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Asa Marsal · Portfolio & Links',
-          text: "Here's All of My Portfolio Down Below",
-          url: window.location.href,
-        })
-      } catch {
-        // Ignored or cancelled
-      }
-    } else {
-      await navigator.clipboard.writeText(window.location.href)
-      setCopiedId('page')
-      setTimeout(() => setCopiedId(null), 2000)
-    }
-  }
 
   const handleCopyLink = async (url: string, id: string) => {
     const fullUrl = url.startsWith('http') ? url : `${window.location.origin}${url}`
@@ -235,30 +218,27 @@ export function LinktreeView({ onSwitchToFull }: LinktreeViewProps) {
       <header className="linktree-topbar">
         <button
           type="button"
-          className="linktree-top-btn"
+          className="linktree-mode-badge-btn mono"
           onClick={onSwitchToFull}
-          title="Switch to full website"
-          aria-label="Switch to full website"
+          title="Current: Simple Mode. Tap to switch to Creative Mode"
+          aria-label="Current: Simple Mode. Switch to Creative Mode"
         >
-          {/* Simple view starburst icon */}
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-            <path d="M13.5 1.5v6.2l4.4-4.4 2.1 2.1-4.4 4.4h6.2v3h-6.2l4.4 4.4-2.1 2.1-4.4-4.4v6.2h-3v-6.2l-4.4 4.4-2.1-2.1 4.4-4.4H1.5v-3h6.2l-4.4-4.4 2.1-2.1 4.4 4.4V1.5h3z" />
-          </svg>
+          <Smartphone size={13} aria-hidden="true" className="linktree-mode-badge-icon" />
+          <span>Simple Mode</span>
         </button>
 
-        <button
-          type="button"
-          className="linktree-top-btn"
-          onClick={handleShare}
-          title="Share profile"
-          aria-label="Share profile"
-        >
-          {copiedId === 'page' ? (
-            <Check size={18} aria-hidden="true" className="text-orange" />
-          ) : (
-            <Share2 size={18} aria-hidden="true" />
-          )}
-        </button>
+        {onToggleTheme && (
+          <button
+            type="button"
+            className="linktree-top-btn"
+            onClick={onToggleTheme}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            aria-pressed={theme === 'light'}
+          >
+            {theme === 'dark' ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+          </button>
+        )}
       </header>
 
       {/* Profile Section */}
@@ -346,7 +326,7 @@ export function LinktreeView({ onSwitchToFull }: LinktreeViewProps) {
           onClick={onSwitchToFull}
           className="linktree-switch-full-btn mono"
         >
-          <span>⚡ View Full Portfolio Experience</span>
+          <span>⚡ View Creative Mode</span>
         </button>
       </footer>
     </div>

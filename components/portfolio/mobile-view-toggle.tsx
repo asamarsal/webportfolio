@@ -1,6 +1,6 @@
 'use client'
 
-import { Globe, Smartphone } from 'lucide-react'
+import { Smartphone, Sparkles } from 'lucide-react'
 
 type ViewMode = 'full' | 'simple'
 
@@ -18,10 +18,10 @@ export function MobileViewToggle({ mode, onChange }: MobileViewToggleProps) {
           className={`mobile-view-flag-btn ${mode === 'full' ? 'is-active' : ''}`}
           onClick={() => onChange('full')}
           aria-pressed={mode === 'full'}
-          aria-label="Switch to full website portfolio"
+          aria-label="Switch to Creative Mode"
         >
-          <Globe size={13} aria-hidden="true" />
-          <span>Full Web</span>
+          <Sparkles size={12} aria-hidden="true" />
+          <span>Creative Mode</span>
         </button>
 
         <button
@@ -29,10 +29,10 @@ export function MobileViewToggle({ mode, onChange }: MobileViewToggleProps) {
           className={`mobile-view-flag-btn ${mode === 'simple' ? 'is-active' : ''}`}
           onClick={() => onChange('simple')}
           aria-pressed={mode === 'simple'}
-          aria-label="Switch to simple portfolio view"
+          aria-label="Switch to Simple Mode"
         >
-          <Smartphone size={13} aria-hidden="true" />
-          <span>Simple</span>
+          <Smartphone size={12} aria-hidden="true" />
+          <span>Simple Mode</span>
         </button>
       </div>
     </div>

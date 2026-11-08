@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, Menu, Moon, Smartphone, Sun, X } from 'lucide-react'
+import { ArrowUpRight, Menu, Moon, Sparkles, Smartphone, Sun, X } from 'lucide-react'
 import { navigationItems } from './portfolio-data'
 import { AsaSmileLogo } from './asa-smile-logo'
 
@@ -77,11 +77,11 @@ export function SiteNavigation({
               className="view-mode-nav-btn mobile-only"
               type="button"
               onClick={onToggleViewMode}
-              aria-label="Switch to Simple view"
-              title="Switch to Simple view"
+              aria-label="Current: Creative Mode. Tap to switch to Simple Mode"
+              title="Creative Mode (Tap to switch to Simple Mode)"
             >
-              <Smartphone size={13} aria-hidden="true" />
-              <span className="mono">Simple</span>
+              <Sparkles size={11} aria-hidden="true" />
+              <span className="mono">Creative Mode</span>
             </button>
           )}
           <button
@@ -141,7 +141,7 @@ export function SiteNavigation({
                 closeMenu()
               }}
             >
-              <span>SWITCH TO SIMPLE VIEW</span>
+              <span>SWITCH TO SIMPLE MODE</span>
               <ArrowUpRight aria-hidden="true" />
             </button>
           )}
