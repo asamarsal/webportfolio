@@ -1,0 +1,23 @@
+ASA MARSAL
+Creative Engineer · Frontend Developer · Web3 Builder
+
+PROFILE
+A product-minded developer who turns ideas into thoughtful digital experiences across web, mobile, and Web3. Interested in the space where engineering, product thinking, and visual storytelling meet.
+
+EXPERIENCE
+Frontend Developer — Swadharma Duta Data · BNI (Outsourcing)
+React and TypeScript development, reusable component architecture, Storybook design systems, back-office modules, utility APIs, and SIT/UAT testing.
+
+Product & Web3 Builder — Personal & Hackathon Projects
+Decentralized applications, smart-contract prototypes, product architecture, and blockchain experimentation.
+
+SELECTED PROJECTS
+PromptHub — Decentralized marketplace for prompts, datasets, and digital assets.
+Paradice — On-chain multiplayer Ludo game with chat, leaderboard, and NFT rewards.
+Banking Platform — Reusable enterprise components, back-office modules, and utility APIs.
+Norxel Tracking — Mobile maintenance, attendance, geolocation, and task management.
+
+TOOLS & TECHNOLOGIES
+React · Next.js · TypeScript · Flutter · Laravel · PostgreSQL · Solidity · Move · Docker · Figma · Storybook · Git
+
+This portfolio profile is a starting point and can be replaced with a full CV and contact details.
