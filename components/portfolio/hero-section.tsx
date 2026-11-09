@@ -44,17 +44,11 @@ function TerminalWindow() {
             <span className="terminal-value">: {value}</span>
           </p>
         ))}
-        <div className="terminal-status" style={{ animationDelay: '0.52s' }}>
+        <p className="terminal-line terminal-status" style={{ animationDelay: '0.52s' }}>
           <span className="terminal-prompt">›</span>
           <span className="terminal-key">status</span>
           <span className="terminal-value">: <span className="terminal-typing">building...</span></span>
-          <span className="terminal-progress" aria-hidden="true">
-            {Array.from({ length: 10 }, (_, index) => (
-              <i className={index < 7 ? 'is-filled' : undefined} key={index} />
-            ))}
-          </span>
-          <span className="terminal-percent">72%</span>
-        </div>
+        </p>
       </div>
     </aside>
   )

@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { AsciiSkeleton } from 'ascii-reveal'
 
 type AsciiPortraitProps = {
   className?: string
@@ -24,11 +25,15 @@ const smoothStep = (value: number) => {
 }
 
 export function AsciiPortrait({ className = '' }: AsciiPortraitProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isReady, setIsReady] = useState(false)
+  const [isFading, setIsFading] = useState(false)
+  const [showSkeleton, setShowSkeleton] = useState(true)
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const host = canvas?.parentElement
+    const host = containerRef.current || canvas?.parentElement
     const hero = canvas?.closest<HTMLElement>('#home')
     const context = canvas?.getContext('2d', { alpha: true })
     const sampleCanvas = document.createElement('canvas')
@@ -54,6 +59,23 @@ export function AsciiPortrait({ className = '' }: AsciiPortraitProps) {
     let imageReady = false
     let photoReady = false
     let visible = true
+    const mountTime = performance.now()
+    const minSkeletonDuration = 850
+    let revealTimer: NodeJS.Timeout | null = null
+    let unmountTimer: NodeJS.Timeout | null = null
+
+    const triggerReveal = () => {
+      const elapsed = performance.now() - mountTime
+      const delay = Math.max(0, minSkeletonDuration - elapsed)
+
+      revealTimer = setTimeout(() => {
+        setIsFading(true)
+        setIsReady(true)
+        unmountTimer = setTimeout(() => {
+          setShowSkeleton(false)
+        }, 550)
+      }, delay)
+    }
 
     const samplePortrait = () => {
       if (!imageReady) return
@@ -271,12 +293,14 @@ export function AsciiPortrait({ className = '' }: AsciiPortraitProps) {
       imageReady = true
       resize()
       startAnimation()
+      triggerReveal()
     }
     image.onerror = () => {
       imageReady = false
       photoReady = false
       pixels = null
       draw(performance.now())
+      triggerReveal()
     }
     image.src = PORTRAIT_SOURCE
 
@@ -323,6 +347,8 @@ export function AsciiPortrait({ className = '' }: AsciiPortraitProps) {
     }
 
     return () => {
+      if (revealTimer) clearTimeout(revealTimer)
+      if (unmountTimer) clearTimeout(unmountTimer)
       window.cancelAnimationFrame(frameId)
       window.removeEventListener('resize', resize)
       resizeObserver.disconnect()
@@ -337,5 +363,27 @@ export function AsciiPortrait({ className = '' }: AsciiPortraitProps) {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className={`ascii-portrait ${className}`} aria-hidden="true" />
+  return (
+    <div ref={containerRef} className={`ascii-portrait-wrapper ${className}`}>
+      <canvas
+        ref={canvasRef}
+        className={`ascii-portrait ${isReady ? 'is-ready' : 'is-loading'}`}
+        aria-hidden="true"
+      />
+      {showSkeleton && (
+        <div
+          className={`ascii-portrait-skeleton ${isFading ? 'is-fading' : ''}`}
+          aria-hidden="true"
+        >
+          <AsciiSkeleton
+            variant="dither"
+            rows={34}
+            width="100%"
+            height="100%"
+            className="ascii-face-skeleton"
+          />
+        </div>
+      )}
+    </div>
+  )
 }
