@@ -244,7 +244,7 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
       <section className="linktree-profile">
         <div className="linktree-avatar-wrapper">
           <Image
-            src="/avatar.png"
+            src="/images/profilephoto.png"
             alt="Asa Marsal"
             width={96}
             height={96}

@@ -1,10 +1,16 @@
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+import { ArrowDown, ArrowUpRight, Eye, EyeOff } from 'lucide-react'
 import { AsciiPortrait } from './ascii-portrait'
 import { AsciiWave } from './ascii-wave'
 import { DigitalPresenceCard } from './digital-presence-card'
 import { HeroStats } from './story-sections'
 
 export function HeroSection() {
+  const [showPhoto, setShowPhoto] = useState(false)
+
   return (
     <section id="home" className="hero-section" data-section>
       <div className="hero-grid layout-shell">
@@ -33,10 +39,37 @@ export function HeroSection() {
           <div
             className="hero-ascii-mask"
             role="img"
-            aria-label="ASCII portrait of Asa Marsal that disperses into dust as you scroll"
+            aria-label={
+              showPhoto
+                ? 'Original portrait photo of Asa Marsal'
+                : 'ASCII portrait of Asa Marsal that disperses into dust as you scroll'
+            }
           >
-            <AsciiPortrait className="hero-ascii" />
+            <AsciiPortrait className={`hero-ascii ${showPhoto ? 'is-hidden' : ''}`} />
+            <div className={`hero-photo-layer ${showPhoto ? 'is-visible' : ''}`} aria-hidden={!showPhoto}>
+              <Image
+                src="/images/face-hero.png"
+                alt="Asa Marsal portrait photo"
+                fill
+                sizes="(max-width: 900px) 100vw, 480px"
+                className="hero-photo-img"
+                priority
+              />
+            </div>
           </div>
+
+          <button
+            type="button"
+            className={`art-eye-toggle ${showPhoto ? 'is-active' : ''}`}
+            onClick={() => setShowPhoto((prev) => !prev)}
+            data-magnetic
+            title={showPhoto ? 'Beralih ke versi ASCII Face' : 'Lihat foto asli'}
+            aria-label={showPhoto ? 'Beralih ke versi ASCII Face' : 'Lihat foto asli'}
+            aria-pressed={showPhoto}
+          >
+            {showPhoto ? <EyeOff size={16} aria-hidden="true" /> : <Eye size={16} aria-hidden="true" />}
+          </button>
+
           <span className="art-coordinate mono">Frontend Dev<br />@asamarsal</span>
           <div className="art-corner art-corner-tl" aria-hidden="true" />
           <div className="art-corner art-corner-br" aria-hidden="true" />
