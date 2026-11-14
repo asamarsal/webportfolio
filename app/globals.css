@@ -5300,6 +5300,24 @@ html[data-theme='light'] .linktree-top-btn {
   background: #141414;
 }
 
+button.linktree-avatar-btn {
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button.linktree-avatar-btn:hover {
+  transform: scale(1.06);
+  border-color: var(--orange, #ff6b16);
+  box-shadow: 0 10px 30px rgba(255, 107, 22, 0.35);
+}
+
+button.linktree-avatar-btn:active {
+  transform: scale(0.97);
+}
+
 .linktree-avatar {
   width: 100%;
   height: 100%;
@@ -5521,6 +5539,133 @@ html[data-theme='light'] .linktree-popup-item {
 
 html[data-theme='light'] .linktree-popup-item:hover {
   background: rgba(31, 29, 26, 0.08);
+}
+
+/* Photo Viewer Modal Dialog */
+.photoviewer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: photoviewer-fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+@keyframes photoviewer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.photoviewer-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(88vw, 420px);
+  width: 100%;
+  animation: photoviewer-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+@keyframes photoviewer-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.photoviewer-close-btn {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(24, 24, 27, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+[data-theme='light'] .photoviewer-close-btn {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(31, 29, 26, 0.15);
+  color: #1f1d1a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.photoviewer-close-btn:hover {
+  background: var(--orange, #ff6b16);
+  border-color: var(--orange, #ff6b16);
+  color: #ffffff;
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 0 20px rgba(255, 107, 22, 0.55);
+}
+
+.photoviewer-image-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 107, 22, 0.12);
+  background: #121214;
+}
+
+[data-theme='light'] .photoviewer-image-card {
+  border-color: rgba(31, 29, 26, 0.12);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+}
+
+.photoviewer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photoviewer-caption {
+  margin-top: 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme='light'] .photoviewer-caption {
+  color: rgba(31, 29, 26, 0.7);
+}
+
+@media (max-width: 480px) {
+  .photoviewer-close-btn {
+    top: 10px;
+    right: 10px;
+  }
 }
 
 .linktree-footer {

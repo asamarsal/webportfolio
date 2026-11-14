@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ExternalLink, Copy, Smartphone, Moon, Sun, ChevronLeft } from 'lucide-react'
+import { ExternalLink, Copy, Smartphone, Moon, Sun, ChevronLeft, X } from 'lucide-react'
 
 type LinktreeViewProps = {
   onSwitchToFull: () => void
@@ -200,6 +200,16 @@ function renderLinkIcon(type: LinkItem['icon']) {
 export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: LinktreeViewProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
+  const [isPhotoViewerOpen, setIsPhotoViewerOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isPhotoViewerOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsPhotoViewerOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isPhotoViewerOpen])
 
   const handleCopyLink = async (url: string, id: string) => {
     const fullUrl = url.startsWith('http') ? url : `${window.location.origin}${url}`
@@ -242,7 +252,13 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
 
       {/* Profile Section */}
       <section className="linktree-profile">
-        <div className="linktree-avatar-wrapper">
+        <button
+          type="button"
+          className="linktree-avatar-wrapper linktree-avatar-btn"
+          onClick={() => setIsPhotoViewerOpen(true)}
+          title="Lihat foto profil"
+          aria-label="Lihat foto profil Asa Marsal"
+        >
           <Image
             src="/images/profilephoto.png"
             alt="Asa Marsal"
@@ -251,7 +267,7 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
             className="linktree-avatar"
             priority
           />
-        </div>
+        </button>
         <h1 className="linktree-name">Asa Marsal</h1>
         <p className="linktree-bio">Here&apos;s All of My Portfolio Down Below</p>
       </section>
@@ -317,6 +333,45 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
           </div>
         ))}
       </main>
+
+      {/* Photo Viewer Modal Dialog */}
+      {isPhotoViewerOpen && (
+        <div
+          className="photoviewer-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo Viewer"
+          onClick={() => setIsPhotoViewerOpen(false)}
+        >
+          <div
+            className="photoviewer-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button (x) in top right corner */}
+            <button
+              type="button"
+              className="photoviewer-close-btn"
+              onClick={() => setIsPhotoViewerOpen(false)}
+              aria-label="Close photo viewer"
+              title="Close"
+            >
+              <X size={18} aria-hidden="true" />
+            </button>
+
+            <div className="photoviewer-image-card">
+              <Image
+                src="/images/profilephoto.png"
+                alt="Asa Marsal profile photo"
+                width={500}
+                height={500}
+                className="photoviewer-img"
+                priority
+              />
+            </div>
+            <p className="photoviewer-caption mono">Asa Marsal</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
