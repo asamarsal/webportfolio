@@ -131,38 +131,41 @@ export function FooterSection() {
               </div>
             </div>
 
-            {/* COLUMN 2: Navigate */}
-            <div className="footer-col">
-              <h3 className="footer-col-title mono">
-                <span className="footer-slashes">//</span> Navigate
-              </h3>
-              <nav className="footer-nav-list" aria-label="Footer navigation">
-                {NAV_LINKS.map((item) => (
-                  <a key={item.label} href={item.href} className="footer-nav-link">
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
+            {/* COLUMNS 2 & 3: Navigate & Resources (2 distinct columns on desktop, combined into 1 column on mobile) */}
+            <div className="footer-links-col">
+              {/* COLUMN 2: Navigate */}
+              <div className="footer-col footer-col--nav">
+                <h3 className="footer-col-title mono">
+                  <span className="footer-slashes">//</span> Navigate
+                </h3>
+                <nav className="footer-nav-list" aria-label="Footer navigation">
+                  {NAV_LINKS.map((item) => (
+                    <a key={item.label} href={item.href} className="footer-nav-link">
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
 
-            {/* COLUMN 3: Resources */}
-            <div className="footer-col">
-              <h3 className="footer-col-title mono">
-                <span className="footer-slashes">//</span> Resources
-              </h3>
-              <div className="footer-nav-list">
-                {RESOURCE_LINKS.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="footer-nav-link footer-nav-link--external"
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight size={13} aria-hidden="true" className="footer-link-arrow" />
-                  </a>
-                ))}
+              {/* COLUMN 3: Resources */}
+              <div className="footer-col footer-col--resources">
+                <h3 className="footer-col-title mono">
+                  <span className="footer-slashes">//</span> Resources
+                </h3>
+                <div className="footer-nav-list">
+                  {RESOURCE_LINKS.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-nav-link footer-nav-link--external"
+                    >
+                      <span>{item.label}</span>
+                      <ArrowUpRight size={13} aria-hidden="true" className="footer-link-arrow" />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 

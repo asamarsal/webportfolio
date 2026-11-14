@@ -3432,6 +3432,10 @@ html[data-theme='light'] .tech-card-front::after {
   box-shadow: 0 6px 14px -3px rgba(255, 107, 22, 0.35);
 }
 
+.footer-links-col {
+  display: contents;
+}
+
 /* HEADERS FOR COLS 2, 3, 4 */
 .footer-col-title {
   font-size: 12.5px;
@@ -3616,6 +3620,17 @@ html[data-theme='light'] .tech-card-front::after {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
   }
+
+  .footer-links-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .footer-col--connect {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 640px) {
@@ -3626,6 +3641,17 @@ html[data-theme='light'] .tech-card-front::after {
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .footer-links-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .footer-col--connect {
+    grid-column: auto;
   }
 
   .footer-tagline,
