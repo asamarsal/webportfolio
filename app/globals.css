@@ -510,6 +510,14 @@ html[data-theme='light'] .ascii-scroll-background {
   margin-right: 5px;
 }
 
+.hero-title-row {
+  display: block;
+}
+
+.hero-mobile-avatar {
+  display: none;
+}
+
 .hero-heading {
   display: flex;
   margin: 0;
@@ -4409,30 +4417,80 @@ html[data-theme='light'] .tech-card-front::after {
     font-size: 9.5px;
   }
 
+  .hero-title-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
   .hero-heading {
-    font-size: clamp(2.65rem, 12vw, 3.55rem) !important;
-    letter-spacing: -0.055em !important;
-    line-height: 0.94 !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
+    font-size: clamp(1.95rem, 8.2vw, 2.65rem) !important;
+    letter-spacing: -0.05em !important;
+    line-height: 0.96 !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
     max-width: 100% !important;
     margin: 0 !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
   }
 
   .hero-heading>span:first-child {
-    font-size: 0.618em !important;
+    font-size: 0.52em !important;
     line-height: 1.15 !important;
-    letter-spacing: -0.035em !important;
-    margin-bottom: 4px !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 2px !important;
     display: block !important;
   }
 
   .hero-name {
-    white-space: normal !important;
-    display: inline !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-    letter-spacing: -0.055em !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    letter-spacing: -0.05em !important;
+  }
+
+  .hero-mobile-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: clamp(66px, 17vw, 82px) !important;
+    height: clamp(66px, 17vw, 82px) !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 2px solid rgba(255, 107, 22, 0.45) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 14px rgba(255, 107, 22, 0.22) !important;
+    background: #141414;
+    position: relative;
+    cursor: pointer;
+    padding: 0 !important;
+    outline: none;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-mobile-avatar:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(255, 107, 22, 0.4), 0 0 20px rgba(255, 107, 22, 0.35) !important;
+    border-color: var(--orange, #ff6b16) !important;
+  }
+
+  .hero-mobile-avatar:active {
+    transform: scale(0.96);
+  }
+
+  [data-theme='light'] .hero-mobile-avatar {
+    background: #ffffff;
+    border-color: var(--orange, #e55b11) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 14px rgba(229, 91, 17, 0.2) !important;
+  }
+
+  .hero-mobile-avatar-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
   }
 
   .role-strip {
@@ -5006,9 +5064,14 @@ html[data-theme='light'] .tech-card-front::after {
   }
 
   .hero-heading {
-    font-size: clamp(2.35rem, 11vw, 2.75rem) !important;
+    font-size: clamp(1.72rem, 7.6vw, 2.15rem) !important;
     letter-spacing: -0.05em !important;
-    line-height: 0.96 !important;
+    line-height: 0.98 !important;
+  }
+
+  .hero-mobile-avatar {
+    width: 58px !important;
+    height: 58px !important;
   }
 
   .hero-actions {

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ArrowDown, ArrowUpRight, Eye, EyeOff } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Eye, EyeOff, X } from 'lucide-react'
 import { AsciiPortrait } from './ascii-portrait'
 import { AsciiWave } from './ascii-wave'
 import { DigitalPresenceCard } from './digital-presence-card'
@@ -10,16 +10,44 @@ import { HeroStats } from './story-sections'
 
 export function HeroSection() {
   const [showPhoto, setShowPhoto] = useState(false)
+  const [isPhotoViewerOpen, setIsPhotoViewerOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isPhotoViewerOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsPhotoViewerOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isPhotoViewerOpen])
 
   return (
     <section id="home" className="hero-section" data-section>
       <div className="hero-grid layout-shell">
         <div className="hero-intro">
           <p className="eyebrow mono"><span>//</span> portfolio v1.0.0</p>
-          <h1 className="hero-heading" data-scratch-reveal>
-            <span>Hi, I&apos;m</span>
-            <span className="hero-name">Asa Marsal<span className="hero-caret">_</span></span>
-          </h1>
+          <div className="hero-title-row">
+            <h1 className="hero-heading" data-scratch-reveal>
+              <span>Hi, I&apos;m</span>
+              <span className="hero-name">Asa Marsal<span className="hero-caret">_</span></span>
+            </h1>
+            <button
+              type="button"
+              className="hero-mobile-avatar"
+              onClick={() => setIsPhotoViewerOpen(true)}
+              title="Lihat foto profil"
+              aria-label="Lihat foto profil Asa Marsal"
+            >
+              <Image
+                src="/images/profilephoto.png"
+                alt="Asa Marsal"
+                width={80}
+                height={80}
+                className="hero-mobile-avatar-img"
+                priority
+              />
+            </button>
+          </div>
           <div className="role-strip"><span>Creative Engineer</span></div>
           <p className="hero-copy">
             A developer and product builder who turns ideas into impactful digital products — across web, mobile, and Web3.
@@ -95,6 +123,44 @@ export function HeroSection() {
         </span>
       </a>
       <AsciiWave />
+
+      {/* Profile Photo Viewer Modal */}
+      {isPhotoViewerOpen && (
+        <div
+          className="photoviewer-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Profile photo viewer"
+          onClick={() => setIsPhotoViewerOpen(false)}
+        >
+          <div
+            className="photoviewer-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="photoviewer-close-btn"
+              onClick={() => setIsPhotoViewerOpen(false)}
+              aria-label="Close photo viewer"
+              title="Close"
+            >
+              <X size={18} aria-hidden="true" />
+            </button>
+
+            <div className="photoviewer-image-card">
+              <Image
+                src="/images/profilephoto.png"
+                alt="Asa Marsal profile photo"
+                width={500}
+                height={500}
+                className="photoviewer-img"
+                priority
+              />
+            </div>
+            <p className="photoviewer-caption mono">Asa Marsal</p>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
