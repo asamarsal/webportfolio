@@ -363,10 +363,6 @@ export function ContactSection() {
             </div>
 
             <div className="contact-textarea-box">
-              <div className="contact-textarea-header">
-                <PenLine size={15} className="contact-input-icon" aria-hidden="true" />
-                <span className="contact-textarea-hint mono">// write your inquiry</span>
-              </div>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -413,11 +409,6 @@ export function ContactSection() {
                 <span>Message on LinkedIn</span>
                 <ArrowUpRight size={14} aria-hidden="true" />
               </a>
-            </div>
-
-            <div className="contact-status-indicator">
-              <span className="contact-status-dot" aria-hidden="true" />
-              <span className="contact-status-text">Usually replies within 1-2 days</span>
             </div>
           </div>
         </div>

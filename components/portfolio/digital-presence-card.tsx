@@ -1,12 +1,15 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import { AsciiSkeleton } from 'ascii-reveal'
 
 type LinkItem = {
   title: string
   desc: string
   url: string
   icon: React.ReactNode
+  widths: string[]
 }
 
 const digitalLinks: LinkItem[] = [
@@ -14,6 +17,7 @@ const digitalLinks: LinkItem[] = [
     title: 'LinkedIn',
     desc: 'Professional network',
     url: 'https://www.linkedin.com/in/asamarsal/',
+    widths: ['52%', '92%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <rect width="24" height="24" rx="4.5" fill="#0A66C2" />
@@ -28,6 +32,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Behance',
     desc: 'Creative work',
     url: 'http://behance.net/asamarsal',
+    widths: ['48%', '78%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#0057ff" aria-hidden="true">
         <path d="M4 6h4.5a3.5 3.5 0 0 1 2.3 6.1A3.8 3.8 0 0 1 4 18H4V6zm2.4 4.8h2a1.4 1.4 0 0 0 0-2.8H6.4v2.8zm0 5h2.2a1.6 1.6 0 0 0 0-3.2H6.4v3.2zm8.4-5.8h5.2v1.4h-5.2v-1.4zm5.1 4.5c0-3.2-2.1-4.7-4.6-4.7-2.6 0-4.6 2-4.6 4.7 0 2.8 2 4.7 4.8 4.7 2.2 0 3.8-1.1 4.3-2.6h-2.1a2.1 2.1 0 0 1-2.2 1.3 2.3 2.3 0 0 1-2.4-2.1h6.8c0-.4 0-.9 0-1.3zm-6.8-.7c.2-1.3 1.1-2.1 2.2-2.1 1.2 0 2.1.8 2.2 2.1h-4.4z" />
@@ -38,6 +43,7 @@ const digitalLinks: LinkItem[] = [
     title: 'GitHub',
     desc: 'Open source projects',
     url: 'https://github.com/asamarsal',
+    widths: ['45%', '92%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
         <path
@@ -52,6 +58,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Medium',
     desc: 'Articles & writing',
     url: 'https://medium.com/@asamarsal',
+    widths: ['46%', '86%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
         <path d="M3 5.5h4.2l4.8 10.4 4.5-10.4H21V7h-1.2c-.3 0-.6.2-.6.5V17c0 .3.3.5.6.5H21v1.5h-5.8V17.5h1.2c.3 0 .5-.2.5-.5V8.8l-4.7 10.2h-.8L6.2 8.7V17c0 .3.2.5.5.5h1.5V19H3v-1.5h1.2c.3 0 .5-.2.5-.5V7.5c0-.3-.2-.5-.5-.5H3V5.5z" />
@@ -62,6 +69,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Instagram',
     desc: 'Visual journal',
     url: 'https://www.instagram.com/exluminated',
+    widths: ['58%', '80%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <defs>
@@ -83,6 +91,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Objkt (NFT)',
     desc: 'Digital art & NFT',
     url: 'https://objkt.com/users/tz1QNKFfaBJk1RU5MxLWUZDBk1p6BypXo5rB/',
+    widths: ['62%', '88%'],
     icon: (
       <span
         className="mono font-bold"
@@ -96,6 +105,7 @@ const digitalLinks: LinkItem[] = [
     title: 'GitBook Notes',
     desc: 'Documentation & notes',
     url: 'https://asamarsal.gitbook.io/notes',
+    widths: ['72%', '96%'],
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -117,6 +127,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Dribbble',
     desc: 'UI / UX design',
     url: 'http://dribbble.com/asamarsal',
+    widths: ['50%', '82%'],
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -140,6 +151,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Gumroad',
     desc: 'Digital products',
     url: 'https://exluminate.gumroad.com/',
+    widths: ['48%', '85%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <circle cx="12" cy="12" r="11" fill="#ff90e8" />
@@ -161,6 +173,7 @@ const digitalLinks: LinkItem[] = [
     title: 'YouTube',
     desc: 'Video content',
     url: 'https://www.youtube.com/channel/UClqybM4UxI5B6KBkp7Xqu2g',
+    widths: ['50%', '78%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="#FF0000" />
@@ -172,6 +185,7 @@ const digitalLinks: LinkItem[] = [
     title: 'SoundCloud',
     desc: 'Audio & sound design',
     url: 'https://soundcloud.com/asamarsal',
+    widths: ['64%', '94%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#ff5500" aria-hidden="true">
         <path d="M11.56 8.87V17h7.24a3.86 3.86 0 0 0 3.86-3.86c0-2-1.52-3.65-3.48-3.84a5.04 5.04 0 0 0-4.83-3.43c-1.07 0-2.06.35-2.86.95l.07 2.05zM10.15 9.77v7.23h-.84V9.8c.28-.02.56-.03.84-.03zM7.9 11.23v5.77h-.84v-5.59c.28-.08.56-.14.84-.18zM5.65 12.38V17H4.8v-4.47c.28-.06.56-.1.85-.15zm-2.26 1.4V17h-.84v-2.97c.27-.08.55-.15.84-.23zm-2.25 1.5V17H.3v-1.46c.27-.09.56-.18.84-.26z" />
@@ -182,6 +196,7 @@ const digitalLinks: LinkItem[] = [
     title: 'Google Drive',
     desc: 'Certificates & docs',
     url: 'https://drive.google.com/drive/folders/1_3tBqLBtyHLoRXcSdQpG_1UvUFyJ50rM',
+    widths: ['68%', '90%'],
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <path d="M8.27 3.3h7.46l5.77 10h-7.46z" fill="#4285F4" />
@@ -193,6 +208,33 @@ const digitalLinks: LinkItem[] = [
 ]
 
 export function DigitalPresenceCard() {
+  const [isReady, setIsReady] = useState(false)
+  const [isFading, setIsFading] = useState(false)
+  const [showSkeleton, setShowSkeleton] = useState(true)
+
+  useEffect(() => {
+    const mountTime = performance.now()
+    const minSkeletonDuration = 850
+    let revealTimer: NodeJS.Timeout | null = null
+    let unmountTimer: NodeJS.Timeout | null = null
+
+    const elapsed = performance.now() - mountTime
+    const delay = Math.max(0, minSkeletonDuration - elapsed)
+
+    revealTimer = setTimeout(() => {
+      setIsFading(true)
+      setIsReady(true)
+      unmountTimer = setTimeout(() => {
+        setShowSkeleton(false)
+      }, 550)
+    }, delay)
+
+    return () => {
+      if (revealTimer) clearTimeout(revealTimer)
+      if (unmountTimer) clearTimeout(unmountTimer)
+    }
+  }, [])
+
   return (
     <aside className="dp-window reveal-up" aria-label="Asa Marsal digital presence & portfolio links">
       {/* Heading & Badge */}
@@ -201,12 +243,11 @@ export function DigitalPresenceCard() {
           Here&apos;s All of My<br />
           Portfolio Down Below<span className="dp-orange-dot">.</span>
         </h2>
-        <div className="dp-badge mono">12 LINKS</div>
       </div>
 
-      {/* 2-Column Links Grid with 3D Flip Card Hover Effect */}
+      {/* 2-Column Links Grid with 3D Flip Card Hover Effect & ASCII Skeleton Shimmer */}
       <div className="dp-grid">
-        {digitalLinks.map((item) => (
+        {digitalLinks.map((item, index) => (
           <a
             key={item.title}
             href={item.url}
@@ -220,8 +261,24 @@ export function DigitalPresenceCard() {
               <div className="dp-card-leaf dp-card-front">
                 <span className="dp-card-icon">{item.icon}</span>
                 <div className="dp-card-info">
-                  <span className="dp-card-title">{item.title}</span>
-                  <span className="dp-card-desc">{item.desc}</span>
+                  <span className={`dp-card-title ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                    {item.title}
+                  </span>
+                  <span className={`dp-card-desc ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                    {item.desc}
+                  </span>
+
+                  {showSkeleton && (
+                    <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
+                      <AsciiSkeleton
+                        variant="dither"
+                        lines={2}
+                        widths={item.widths}
+                        seed={index * 7 + 3}
+                        className="dp-text-skeleton"
+                      />
+                    </div>
+                  )}
                 </div>
                 <ArrowUpRight className="dp-card-arrow" size={13} />
               </div>
@@ -230,8 +287,24 @@ export function DigitalPresenceCard() {
               <div className="dp-card-leaf dp-card-back">
                 <span className="dp-card-icon dp-card-icon--back">{item.icon}</span>
                 <div className="dp-card-info">
-                  <span className="dp-card-title dp-card-title--back">{item.title}</span>
-                  <span className="dp-card-desc dp-card-desc--back">{item.desc}</span>
+                  <span className={`dp-card-title dp-card-title--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                    {item.title}
+                  </span>
+                  <span className={`dp-card-desc dp-card-desc--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                    {item.desc}
+                  </span>
+
+                  {showSkeleton && (
+                    <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
+                      <AsciiSkeleton
+                        variant="dither"
+                        lines={2}
+                        widths={item.widths}
+                        seed={index * 7 + 3}
+                        className="dp-text-skeleton"
+                      />
+                    </div>
+                  )}
                 </div>
                 <ArrowUpRight className="dp-card-arrow dp-card-arrow--back" size={13} />
               </div>

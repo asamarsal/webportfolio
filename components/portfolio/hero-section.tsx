@@ -37,10 +37,10 @@ export function HeroSection() {
           >
             <AsciiPortrait className="hero-ascii" />
           </div>
-          <span className="art-coordinate mono">FIELD NOTE 01<br />IDEAS IN MOTION</span>
+          <span className="art-coordinate mono">Frontend Dev<br />@asamarsal</span>
           <div className="art-corner art-corner-tl" aria-hidden="true" />
           <div className="art-corner art-corner-br" aria-hidden="true" />
-          <span className="art-caption mono">a small atlas of possible things</span>
+          <span className="art-caption mono">to keep me warm, i got to feel the fire</span>
           <span className="art-crosshair" aria-hidden="true">+</span>
         </div>
 

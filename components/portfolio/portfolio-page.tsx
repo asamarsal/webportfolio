@@ -214,51 +214,22 @@ export default function PortfolioPage() {
         })
       })
 
-      const footerText = gsap.utils.toArray<HTMLElement>(
-        '.footer-topline span:last-child, .footer-kicker, .footer-email',
-      )
-      if (footerText.length > 0) {
-        gsap.fromTo(
-          footerText,
-          { autoAlpha: 0, y: 18, filter: 'blur(5px)' },
-          {
-            autoAlpha: 1,
-            y: 0,
-            filter: 'blur(0px)',
-            duration: 0.72,
-            stagger: 0.11,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: '.footer-section',
-              start: 'top 88%',
-              once: true,
-            },
+      gsap.fromTo(
+        '.footer-container',
+        { autoAlpha: 0, y: 20 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.footer-section',
+            start: 'top 92%',
+            once: true,
           },
-        )
-      }
-    }, mainRef)
-
-    const responsiveMotion = gsap.matchMedia()
-    responsiveMotion.add('(min-width: 900px)', () => {
-      const footerTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.footer-section',
-          start: 'top top',
-          end: '+=260',
-          pin: '.footer-stage',
-          pinSpacing: false,
-          scrub: 1,
-          invalidateOnRefresh: true,
         },
-      })
-
-      footerTimeline
-        .fromTo('.footer-command', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', ease: 'none' }, 0)
-        .fromTo('.footer-links', { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, ease: 'none' }, 0.22)
-        .to('.footer-ascii-canvas', { scale: 1.08, y: -18, opacity: 0.82, ease: 'none' }, 0)
-
-      return () => footerTimeline.scrollTrigger?.kill()
-    })
+      )
+    }, mainRef)
 
     const magneticCleanups: Array<() => void> = []
     document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((element) => {
@@ -293,7 +264,6 @@ export default function PortfolioPage() {
       window.cancelAnimationFrame(refreshFrameId)
       magneticCleanups.forEach((cleanup) => cleanup())
       gsap.ticker.remove(updateLenis)
-      responsiveMotion.revert()
       context.revert()
       lenis.destroy()
     }
