@@ -214,22 +214,59 @@ export default function PortfolioPage() {
         })
       })
 
-      gsap.fromTo(
-        '.footer-container',
-        { autoAlpha: 0, y: 20 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.footer-section',
-            start: 'top 92%',
-            once: true,
-          },
-        },
+      const footerElements = gsap.utils.toArray<HTMLElement>(
+        '.footer-brand-lockup, .footer-tagline, .footer-social-row, .footer-col, .footer-divider, .footer-bottom-bar',
       )
+      if (footerElements.length > 0) {
+        gsap.fromTo(
+          footerElements,
+          { autoAlpha: 0, y: 22, filter: 'blur(5px)' },
+          {
+            autoAlpha: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 0.76,
+            stagger: 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '.footer-section',
+              start: 'top 88%',
+              once: true,
+            },
+          },
+        )
+      }
     }, mainRef)
+
+    const responsiveMotion = gsap.matchMedia()
+    responsiveMotion.add('(min-width: 900px)', () => {
+      const footerTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.footer-section',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+
+      footerTimeline
+        .fromTo(
+          '.footer-col-title',
+          { clipPath: 'inset(0 100% 0 0)' },
+          { clipPath: 'inset(0 0% 0 0)', ease: 'none', stagger: 0.04 },
+          0,
+        )
+        .fromTo(
+          '.footer-nav-link',
+          { y: 16, autoAlpha: 0.35 },
+          { y: 0, autoAlpha: 1, ease: 'none', stagger: 0.02 },
+          0.1,
+        )
+        .to('.footer-ascii-canvas', { scale: 1.12, y: -24, opacity: 0.72, ease: 'none' }, 0)
+
+      return () => footerTimeline.scrollTrigger?.kill()
+    })
 
     const magneticCleanups: Array<() => void> = []
     document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((element) => {
@@ -264,6 +301,7 @@ export default function PortfolioPage() {
       window.cancelAnimationFrame(refreshFrameId)
       magneticCleanups.forEach((cleanup) => cleanup())
       gsap.ticker.remove(updateLenis)
+      responsiveMotion.revert()
       context.revert()
       lenis.destroy()
     }

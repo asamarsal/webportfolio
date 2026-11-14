@@ -3286,6 +3286,8 @@ html[data-theme='light'] .tech-card-front::after {
   pointer-events: none;
   opacity: 0.38;
   mix-blend-mode: screen;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 
 [data-theme='light'] .footer-ascii-canvas {
@@ -3440,6 +3442,7 @@ html[data-theme='light'] .tech-card-front::after {
   display: flex;
   align-items: center;
   gap: 4px;
+  will-change: clip-path;
 }
 
 .footer-slashes {

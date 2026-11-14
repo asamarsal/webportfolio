@@ -99,7 +99,7 @@ export function FooterSection() {
             {/* COLUMN 1: Brand, Tagline, Socials */}
             <div className="footer-col footer-col--brand">
               <div className="footer-brand-lockup">
-                <div className="footer-brand-logo" aria-hidden="true">
+                <div className="footer-brand-logo" data-magnetic aria-hidden="true">
                   <AsaSmileLogo size={34} />
                 </div>
                 <div className="footer-brand-divider" aria-hidden="true" />
@@ -123,6 +123,7 @@ export function FooterSection() {
                     className="footer-social-btn"
                     title={item.name}
                     aria-label={item.name}
+                    data-magnetic
                   >
                     {item.icon}
                   </a>
@@ -173,7 +174,7 @@ export function FooterSection() {
               <p className="footer-connect-desc">
                 Have a project, collaboration, or just want to say hi?
               </p>
-              <a href="#contact" className="footer-cta-btn">
+              <a href="#contact" className="footer-cta-btn" data-magnetic>
                 <Mail size={15} aria-hidden="true" />
                 <span>Send me a Message</span>
                 <ArrowUpRight size={14} aria-hidden="true" />
