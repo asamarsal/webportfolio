@@ -54,7 +54,9 @@ export function HeroSection() {
           </p>
           <div className="hero-actions">
             <a className="button-primary magnetic-link" href="#projects" data-magnetic>
-              Explore My Work <ArrowUpRight aria-hidden="true" />
+              <span className="btn-text-full">Explore My Work</span>
+              <span className="btn-text-short">My Work</span>
+              <ArrowUpRight aria-hidden="true" />
             </a>
             <a className="button-outline" href="/Asa-Marsal-CV.txt" download>
               Download CV <ArrowDown aria-hidden="true" />

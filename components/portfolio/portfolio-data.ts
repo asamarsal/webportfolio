@@ -122,6 +122,7 @@ export type ExperienceItem = {
   index: string
   role: string
   organization: string
+  logo?: string
   project?: string
   context: string
   period?: string
@@ -134,6 +135,7 @@ export const experiences: ExperienceItem[] = [
     index: '01',
     role: 'Fullstack Web & Mobile Apps Developer',
     organization: 'PT Norxel Teknologi Indonesia',
+    logo: '/icons/norxel.jpg',
     project: 'Norxel Apps (Flutter, Laravel, Next.js)',
     context: 'Enterprise',
     period: 'Oct 2025 - Present',
@@ -152,6 +154,7 @@ export const experiences: ExperienceItem[] = [
     index: '02',
     role: 'Community Advocate',
     organization: 'Hackquest.io',
+    logo: '/icons/hackquest.jpg',
     project: 'Web3 Education Platform',
     context: 'Web3 Community',
     period: 'Jun 2025 - Present',
@@ -166,6 +169,7 @@ export const experiences: ExperienceItem[] = [
     index: '03',
     role: 'Mobile Apps Developer',
     organization: 'Supranusa Sindata',
+    logo: '/icons/vhpsindata.jpg',
     project: 'VHP Dashboard Mobile (Java)',
     context: 'Hospitality Tech',
     period: 'Jun 2024 - Aug 2024',
@@ -180,6 +184,7 @@ export const experiences: ExperienceItem[] = [
     index: '04',
     role: 'Magenta BUMN Internship',
     organization: 'Sinergi Gula Nusantara',
+    logo: '/icons/sgn.webp',
     project: 'Magenta Attendance & Greens Monitoring (Flutter)',
     context: 'BUMN Internship',
     period: 'Oct 2023 - Mar 2024',
@@ -195,6 +200,7 @@ export const experiences: ExperienceItem[] = [
     index: '05',
     role: 'Frontend Developer',
     organization: 'Swadharma Duta Data · BNI',
+    logo: '/icons/bni46.png',
     context: 'Enterprise Banking',
     period: 'Contract',
     description:
@@ -209,6 +215,7 @@ export const experiences: ExperienceItem[] = [
     index: '06',
     role: 'Product & Web3 Builder',
     organization: 'Personal & Hackathon Projects',
+    logo: '/icons/asa.png',
     context: 'Independent',
     period: 'Ongoing',
     description:

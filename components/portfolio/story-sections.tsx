@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import Image from 'next/image'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { experiences, interests, stats } from './portfolio-data'
 
@@ -67,7 +68,19 @@ export function ExperienceSection() {
             <div className="experience-content">
               <div className="experience-meta mono">
                 <span>{experience.context}{experience.period ? ` · ${experience.period}` : ''}</span>
-                <span>{experience.index} / {String(experiences.length).padStart(2, '0')}</span>
+                {experience.logo ? (
+                  <span className="experience-logo-wrapper">
+                    <Image
+                      src={experience.logo}
+                      alt={`${experience.organization} logo`}
+                      width={64}
+                      height={64}
+                      className="experience-logo-img"
+                    />
+                  </span>
+                ) : (
+                  <span>{experience.index} / {String(experiences.length).padStart(2, '0')}</span>
+                )}
               </div>
               <h3>{experience.role}</h3>
               <p className="experience-organization">
