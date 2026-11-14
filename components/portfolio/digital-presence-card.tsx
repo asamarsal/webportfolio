@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ChevronDown } from 'lucide-react'
 import { AsciiSkeleton } from 'ascii-reveal'
 
 type LinkItem = {
@@ -211,6 +211,7 @@ export function DigitalPresenceCard() {
   const [isReady, setIsReady] = useState(false)
   const [isFading, setIsFading] = useState(false)
   const [showSkeleton, setShowSkeleton] = useState(true)
+  const [isCollapsed, setIsCollapsed] = useState(false)
 
   useEffect(() => {
     const mountTime = performance.now()
@@ -236,95 +237,132 @@ export function DigitalPresenceCard() {
   }, [])
 
   return (
-    <aside className="dp-window reveal-up" aria-label="Asa Marsal digital presence & portfolio links">
-      {/* Heading & Badge */}
+    <aside
+      className={`dp-window reveal-up ${isCollapsed ? 'is-collapsed' : ''}`}
+      aria-label="Asa Marsal digital presence & portfolio links"
+    >
+      {/* Heading & Collapse Toggle Button */}
       <div className="dp-header-row">
         <h2 className="dp-heading">
           Here&apos;s All of My<br />
           Portfolio Down Below<span className="dp-orange-dot">.</span>
         </h2>
-      </div>
-
-      {/* 2-Column Links Grid with 3D Flip Card Hover Effect & ASCII Skeleton Shimmer */}
-      <div className="dp-grid">
-        {digitalLinks.map((item, index) => (
-          <a
-            key={item.title}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="dp-card"
-            title={`${item.title} — ${item.desc}`}
-          >
-            <div className="dp-card-stage" aria-hidden="true">
-              {/* Front leaf: Resting view that folds up on hover */}
-              <div className="dp-card-leaf dp-card-front">
-                <span className="dp-card-icon">{item.icon}</span>
-                <div className="dp-card-info">
-                  <span className={`dp-card-title ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
-                    {item.title}
-                  </span>
-                  <span className={`dp-card-desc ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
-                    {item.desc}
-                  </span>
-
-                  {showSkeleton && (
-                    <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
-                      <AsciiSkeleton
-                        variant="dither"
-                        lines={2}
-                        widths={item.widths}
-                        seed={index * 7 + 3}
-                        className="dp-text-skeleton"
-                      />
-                    </div>
-                  )}
-                </div>
-                <ArrowUpRight className="dp-card-arrow" size={13} />
-              </div>
-
-              {/* Back leaf: Highlighted view that flips up from bottom on hover */}
-              <div className="dp-card-leaf dp-card-back">
-                <span className="dp-card-icon dp-card-icon--back">{item.icon}</span>
-                <div className="dp-card-info">
-                  <span className={`dp-card-title dp-card-title--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
-                    {item.title}
-                  </span>
-                  <span className={`dp-card-desc dp-card-desc--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
-                    {item.desc}
-                  </span>
-
-                  {showSkeleton && (
-                    <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
-                      <AsciiSkeleton
-                        variant="dither"
-                        lines={2}
-                        widths={item.widths}
-                        seed={index * 7 + 3}
-                        className="dp-text-skeleton"
-                      />
-                    </div>
-                  )}
-                </div>
-                <ArrowUpRight className="dp-card-arrow dp-card-arrow--back" size={13} />
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      {/* Window Footer Strip */}
-      <div className="dp-footer">
-        <span className="dp-footer-tag mono">EXPLORE MY DIGITAL FOOTPRINT</span>
-        <a
-          href="https://www.linkedin.com/in/asamarsal/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="dp-footer-link mono"
+        <button
+          type="button"
+          onClick={() => setIsCollapsed((prev) => !prev)}
+          className={`dp-toggle-btn ${isCollapsed ? 'is-collapsed' : ''}`}
+          title={isCollapsed ? 'Expand portfolio links' : 'Collapse to icon marquee'}
+          aria-label={isCollapsed ? 'Expand portfolio links' : 'Collapse to icon marquee'}
+          aria-expanded={!isCollapsed}
         >
-          ASA MARSAL <ArrowUpRight size={12} aria-hidden="true" />
-        </a>
+          <ChevronDown size={18} className="dp-toggle-chevron" aria-hidden="true" />
+        </button>
       </div>
+
+      {isCollapsed ? (
+        /* Collapsed View: Running icon marquee from left to right */
+        <div className="dp-collapsed-marquee" aria-label="Social and portfolio links running marquee">
+          <div className="dp-collapsed-track">
+            {/* Duplicated 4 times to ensure seamless infinite loop */}
+            {[...digitalLinks, ...digitalLinks, ...digitalLinks, ...digitalLinks].map((item, idx) => (
+              <a
+                key={`marquee-${item.title}-${idx}`}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dp-marquee-icon-btn"
+                title={`${item.title} — ${item.desc}`}
+                aria-label={item.title}
+              >
+                <span className="dp-marquee-icon">{item.icon}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* 2-Column Links Grid with 3D Flip Card Hover Effect & ASCII Skeleton Shimmer */}
+          <div className="dp-grid">
+            {digitalLinks.map((item, index) => (
+              <a
+                key={item.title}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dp-card"
+                title={`${item.title} — ${item.desc}`}
+              >
+                <div className="dp-card-stage" aria-hidden="true">
+                  {/* Front leaf: Resting view that folds up on hover */}
+                  <div className="dp-card-leaf dp-card-front">
+                    <span className="dp-card-icon">{item.icon}</span>
+                    <div className="dp-card-info">
+                      <span className={`dp-card-title ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                        {item.title}
+                      </span>
+                      <span className={`dp-card-desc ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                        {item.desc}
+                      </span>
+
+                      {showSkeleton && (
+                        <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
+                          <AsciiSkeleton
+                            variant="dither"
+                            lines={2}
+                            widths={item.widths}
+                            seed={index * 7 + 3}
+                            className="dp-text-skeleton"
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <ArrowUpRight className="dp-card-arrow" size={13} />
+                  </div>
+
+                  {/* Back leaf: Highlighted view that flips up from bottom on hover */}
+                  <div className="dp-card-leaf dp-card-back">
+                    <span className="dp-card-icon dp-card-icon--back">{item.icon}</span>
+                    <div className="dp-card-info">
+                      <span className={`dp-card-title dp-card-title--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                        {item.title}
+                      </span>
+                      <span className={`dp-card-desc dp-card-desc--back ${showSkeleton && !isReady ? 'is-loading' : ''}`}>
+                        {item.desc}
+                      </span>
+
+                      {showSkeleton && (
+                        <div className={`dp-card-skeleton ${isFading ? 'is-fading' : ''}`} aria-hidden="true">
+                          <AsciiSkeleton
+                            variant="dither"
+                            lines={2}
+                            widths={item.widths}
+                            seed={index * 7 + 3}
+                            className="dp-text-skeleton"
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <ArrowUpRight className="dp-card-arrow dp-card-arrow--back" size={13} />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Window Footer Strip */}
+          <div className="dp-footer">
+            <span className="dp-footer-tag mono">EXPLORE MY DIGITAL FOOTPRINT</span>
+            <a
+              href="https://www.linkedin.com/in/asamarsal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dp-footer-link mono"
+            >
+              ASA MARSAL <ArrowUpRight size={12} aria-hidden="true" />
+            </a>
+          </div>
+        </>
+      )}
     </aside>
   )
 }
