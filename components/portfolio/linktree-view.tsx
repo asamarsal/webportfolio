@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { ExternalLink, Copy, Smartphone, Moon, Sun } from 'lucide-react'
+import { ExternalLink, Copy, Smartphone, Moon, Sun, ChevronLeft } from 'lucide-react'
 
 type LinktreeViewProps = {
   onSwitchToFull: () => void
@@ -223,8 +223,7 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
           title="Current: Simple Mode. Tap to switch to Creative Mode"
           aria-label="Current: Simple Mode. Switch to Creative Mode"
         >
-          <Smartphone size={13} aria-hidden="true" className="linktree-mode-badge-icon" />
-          <span>Simple Mode</span>
+          <ChevronLeft size={13} aria-hidden="true" className="linktree-mode-badge-icon" color='white' />
         </button>
 
         {onToggleTheme && (
