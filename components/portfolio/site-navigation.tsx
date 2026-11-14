@@ -109,6 +109,27 @@ export function SiteNavigation({
         </div>
       </div>
 
+      {/* Running text ticker strip under header */}
+      <div className="nav-ticker" aria-label="Development status ticker">
+        <span className="sr-only">(Under Development, not done yet)</span>
+        <div className="nav-ticker-track mono" aria-hidden="true">
+          {Array.from({ length: 10 }, (_, i) => (
+            <span key={i} className="nav-ticker-item">
+              <span className="ticker-text">(Under Development, not done yet)</span>
+              <span className="ticker-separator">•</span>
+            </span>
+          ))}
+        </div>
+        <div className="nav-ticker-track mono" aria-hidden="true">
+          {Array.from({ length: 10 }, (_, i) => (
+            <span key={i} className="nav-ticker-item">
+              <span className="ticker-text">(Under Development, not done yet)</span>
+              <span className="ticker-separator">•</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {menuOpen && (
         <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
           <div className="mobile-nav-topline mono">

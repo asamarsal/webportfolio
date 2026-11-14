@@ -3,26 +3,14 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Asa Marsal — Creative Engineer',
+  title: 'Asa Marsal // Creative Engineer',
   description:
     'A creative engineer building thoughtful digital products across web, mobile, and Web3.',
-  generator: 'v0.app',
+  generator: 'asamarsal',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/asa-icon.ico',
+    shortcut: '/asa-icon.ico',
+    apple: '/asa-icon.ico',
   },
 }
 

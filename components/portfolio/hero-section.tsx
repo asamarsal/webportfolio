@@ -1,58 +1,8 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { AsciiPortrait } from './ascii-portrait'
 import { AsciiWave } from './ascii-wave'
-import { TechStackSection } from './tech-stack-section'
+import { DigitalPresenceCard } from './digital-presence-card'
 import { HeroStats } from './story-sections'
-
-const terminalLines = [
-  ['name', 'Asa Marsal'],
-  ['role', 'Creative Engineer'],
-  ['focus', 'Web3, Product, UI/UX'],
-]
-
-function TerminalWindow() {
-  return (
-    <aside className="terminal-window reveal-up" aria-label="Portfolio terminal profile">
-      <div className="terminal-topbar">
-        <div className="terminal-dots" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
-        <span className="terminal-prompt-label mono">asa@portfolio:~$ whoami</span>
-        <span className="terminal-window-mark mono">01</span>
-      </div>
-
-      <pre className="terminal-art mono" aria-hidden="true">{`   .   .     .       +     .
- .   .-.-.       .      .      .
-   . /   \\  .        *    .
- .  / /\\ \\      .      .
-  _/ /  \\ \\_  .    .       +
- /__/    \\__\\      .`}</pre>
-
-      <div className="terminal-divider" />
-      <div className="terminal-content mono">
-        <p className="terminal-command"><span>›</span> whoami</p>
-        {terminalLines.map(([label, value], index) => (
-          <p
-            className="terminal-line"
-            key={label}
-            style={{ animationDelay: `${0.12 + index * 0.1}s` }}
-          >
-            <span className="terminal-prompt">›</span>
-            <span className="terminal-key">{label}</span>
-            <span className="terminal-value">: {value}</span>
-          </p>
-        ))}
-        <p className="terminal-line terminal-status" style={{ animationDelay: '0.52s' }}>
-          <span className="terminal-prompt">›</span>
-          <span className="terminal-key">status</span>
-          <span className="terminal-value">: <span className="terminal-typing">building...</span></span>
-        </p>
-      </div>
-    </aside>
-  )
-}
 
 export function HeroSection() {
   return (
@@ -95,11 +45,10 @@ export function HeroSection() {
         </div>
 
         <div className="hero-aside">
-          <TerminalWindow />
-          <TechStackSection />
+          <DigitalPresenceCard />
         </div>
       </div>
-      <a className="hero-scroll-cue mono" href="#projects">
+      <a className="hero-scroll-cue mono" href="#skills">
         <span className="scroll-cue-mouse" aria-hidden="true" />
         <span className="scroll-cue-label">Scroll to explore</span>
         <span className="scroll-cue-wave" aria-hidden="true">

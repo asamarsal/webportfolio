@@ -66,10 +66,15 @@ export function TechStackSection() {
   }
 
   return (
-    <aside id="skills" className="tech-stack hero-tech-stack" aria-labelledby="tech-stack-title">
-      <div className="tech-title-paper">
-        <span className="mono">//</span>
-        <h2 id="tech-stack-title" data-scratch-reveal>Tech Stack</h2>
+    <section id="skills" className="tech-stack-section layout-shell reveal-up" data-section aria-labelledby="tech-stack-title">
+      <div className="tech-section-header">
+        <div className="tech-title-paper">
+          <span className="mono">//</span>
+          <h2 id="tech-stack-title" data-scratch-reveal>Tech Stack</h2>
+        </div>
+        <p className="tech-section-intro mono">
+          A collection of tools, frameworks, and technologies I use to build robust digital experiences.
+        </p>
       </div>
       <div className="tech-grid">
         {technologyStack.map((technology, index) => (
@@ -102,6 +107,6 @@ export function TechStackSection() {
         <span>12 tools</span>
         <span>and always learning</span>
       </div>
-    </aside>
+    </section>
   )
 }

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { SiteNavigation } from './site-navigation'
 import { HeroSection } from './hero-section'
+import { TechStackSection } from './tech-stack-section'
 import { ProjectsSection } from './projects-section'
 import { AboutSection, BeyondSection, ExperienceSection } from './story-sections'
 import { FooterSection } from './footer-section'
@@ -323,6 +324,7 @@ export default function PortfolioPage() {
           />
           <main ref={mainRef}>
             <HeroSection />
+            <TechStackSection />
             <ProjectsSection />
             <AboutSection />
             <ExperienceSection />
