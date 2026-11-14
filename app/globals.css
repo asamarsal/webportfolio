@@ -1381,6 +1381,7 @@ html[data-theme='light'] .hero-ascii-mask {
   0% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0%);
   }
@@ -3585,21 +3586,17 @@ html[data-theme='light'] .tech-card-front::after {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(16, 16, 15, 0.45) 0%,
-    rgba(16, 16, 15, 0.7) 60%,
-    rgba(16, 16, 15, 0.9) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(16, 16, 15, 0.45) 0%,
+      rgba(16, 16, 15, 0.7) 60%,
+      rgba(16, 16, 15, 0.9) 100%);
 }
 
 [data-theme='light'] .footer-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(241, 234, 220, 0.45) 0%,
-    rgba(241, 234, 220, 0.75) 60%,
-    rgba(241, 234, 220, 0.92) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(241, 234, 220, 0.45) 0%,
+      rgba(241, 234, 220, 0.75) 60%,
+      rgba(241, 234, 220, 0.92) 100%);
 }
 
 .footer-container {
@@ -4456,8 +4453,8 @@ html[data-theme='light'] .tech-card-front::after {
     align-items: center !important;
     justify-content: center !important;
     flex-shrink: 0 !important;
-    width: clamp(66px, 17vw, 82px) !important;
-    height: clamp(66px, 17vw, 82px) !important;
+    width: clamp(91px, 23.4vw, 113px) !important;
+    height: clamp(91px, 23.4vw, 113px) !important;
     border-radius: 50% !important;
     overflow: hidden !important;
     border: 2px solid rgba(255, 107, 22, 0.45) !important;
@@ -4467,6 +4464,7 @@ html[data-theme='light'] .tech-card-front::after {
     cursor: pointer;
     padding: 0 !important;
     outline: none;
+    margin-right: clamp(14px, 4.5vw, 28px) !important;
     transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -5070,8 +5068,9 @@ html[data-theme='light'] .tech-card-front::after {
   }
 
   .hero-mobile-avatar {
-    width: 58px !important;
-    height: 58px !important;
+    width: 66px !important;
+    height: 66px !important;
+    margin-right: 10px !important;
   }
 
   .hero-actions {
@@ -5624,6 +5623,7 @@ html[data-theme='light'] .linktree-popup-item:hover {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -5645,6 +5645,7 @@ html[data-theme='light'] .linktree-popup-item:hover {
     opacity: 0;
     transform: scale(0.92) translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
