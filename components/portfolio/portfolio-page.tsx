@@ -150,6 +150,7 @@ export default function PortfolioPage() {
       anchors: { offset: -84 },
       respectReducedMotion: true,
     })
+    ;(window as any).__lenis = lenis
     const updateLenis = (time: number) => lenis.raf(time * 1000)
     lenis.on('scroll', () => ScrollTrigger.update())
     gsap.ticker.add(updateLenis)

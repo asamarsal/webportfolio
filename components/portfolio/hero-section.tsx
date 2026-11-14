@@ -7,10 +7,12 @@ import { AsciiPortrait } from './ascii-portrait'
 import { AsciiWave } from './ascii-wave'
 import { DigitalPresenceCard } from './digital-presence-card'
 import { HeroStats } from './story-sections'
+import { PdfViewerDialog } from './pdf-viewer-dialog'
 
 export function HeroSection() {
   const [showPhoto, setShowPhoto] = useState(false)
   const [isPhotoViewerOpen, setIsPhotoViewerOpen] = useState(false)
+  const [isPdfViewerOpen, setIsPdfViewerOpen] = useState(false)
 
   useEffect(() => {
     if (!isPhotoViewerOpen) return
@@ -58,9 +60,15 @@ export function HeroSection() {
               <span className="btn-text-short">My Work</span>
               <ArrowUpRight aria-hidden="true" />
             </a>
-            <a className="button-outline" href="/Asa-Marsal-CV.txt" download>
+            <button
+              type="button"
+              className="button-outline"
+              onClick={() => setIsPdfViewerOpen(true)}
+              aria-haspopup="dialog"
+              title="Lihat & Download Creative Portfolio (PDF)"
+            >
               Download CV <ArrowDown aria-hidden="true" />
-            </a>
+            </button>
           </div>
           <HeroStats />
         </div>
@@ -163,6 +171,13 @@ export function HeroSection() {
           </div>
         </div>
       )}
+
+      <PdfViewerDialog
+        isOpen={isPdfViewerOpen}
+        onClose={() => setIsPdfViewerOpen(false)}
+        pdfUrl="/portfolio/creativeportfolio-asamarsal.pdf"
+        fileName="creativeportfolio-asamarsal.pdf"
+      />
     </section>
   )
 }
