@@ -9,6 +9,7 @@ import { HeroSection } from './hero-section'
 import { TechStackSection } from './tech-stack-section'
 import { ProjectsSection } from './projects-section'
 import { AboutSection, BeyondSection, ExperienceSection } from './story-sections'
+import { ContactSection } from './contact-section'
 import { FooterSection } from './footer-section'
 import { ScrollAsciiBackground } from './scroll-ascii-background'
 import { LinktreeView } from './linktree-view'
@@ -228,7 +229,7 @@ export default function PortfolioPage() {
             stagger: 0.11,
             ease: 'power3.out',
             scrollTrigger: {
-              trigger: '#contact',
+              trigger: '.footer-section',
               start: 'top 88%',
               once: true,
             },
@@ -241,7 +242,7 @@ export default function PortfolioPage() {
     responsiveMotion.add('(min-width: 900px)', () => {
       const footerTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: '#contact',
+          trigger: '.footer-section',
           start: 'top top',
           end: '+=260',
           pin: '.footer-stage',
@@ -329,6 +330,7 @@ export default function PortfolioPage() {
             <AboutSection />
             <ExperienceSection />
             <BeyondSection />
+            <ContactSection />
             <FooterSection />
           </main>
           <CursorFollower />

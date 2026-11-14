@@ -3,7 +3,7 @@ import { AsciiLandscape } from './ascii-landscape'
 
 export function FooterSection() {
   return (
-    <footer id="contact" className="footer-section" data-section>
+    <footer id="footer" className="footer-section" data-section>
       <div className="footer-stage">
         <AsciiLandscape className="footer-ascii-canvas" variant="footer" />
         <div className="footer-topline layout-shell mono">
