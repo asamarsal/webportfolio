@@ -15,18 +15,18 @@ type LinkItem = {
   label: string
   url: string
   icon:
-    | 'linkedin'
-    | 'behance'
-    | 'github'
-    | 'medium'
-    | 'instagram'
-    | 'objkt'
-    | 'gitbook'
-    | 'dribbble'
-    | 'gumroad'
-    | 'youtube'
-    | 'soundcloud'
-    | 'gdrive'
+  | 'linkedin'
+  | 'behance'
+  | 'github'
+  | 'medium'
+  | 'instagram'
+  | 'objkt'
+  | 'gitbook'
+  | 'dribbble'
+  | 'gumroad'
+  | 'youtube'
+  | 'soundcloud'
+  | 'gdrive'
 }
 
 const linkItems: LinkItem[] = [
@@ -318,17 +318,6 @@ export function LinktreeView({ onSwitchToFull, theme = 'dark', onToggleTheme }: 
           </div>
         ))}
       </main>
-
-      {/* Bottom Switch Back Banner */}
-      <footer className="linktree-footer">
-        <button
-          type="button"
-          onClick={onSwitchToFull}
-          className="linktree-switch-full-btn mono"
-        >
-          <span>⚡ View Creative Mode</span>
-        </button>
-      </footer>
     </div>
   )
 }

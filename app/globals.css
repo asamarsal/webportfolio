@@ -5249,6 +5249,10 @@ html[data-theme='light'] .linktree-bio {
   box-sizing: border-box !important;
 }
 
+.linktree-card-wrapper:has(.linktree-popup-menu) {
+  z-index: 30 !important;
+}
+
 .linktree-card {
   display: flex !important;
   align-items: center !important;
@@ -5465,6 +5469,78 @@ html[data-theme='light'] .linktree-popup-item:hover {
   .linktree-card-icon {
     width: 24px;
     height: 24px;
+  }
+}
+
+/* Simple Mode Desktop Layout (3 buttons per row) */
+@media (min-width: 900px) {
+  .linktree-screen {
+    max-width: 1040px !important;
+    padding: 36px 32px max(110px, calc(env(safe-area-inset-bottom, 20px) + 85px)) !important;
+  }
+
+  .linktree-topbar {
+    padding: 4px 0 24px !important;
+  }
+
+  .linktree-ambient-glow {
+    height: 480px;
+  }
+
+  .linktree-profile {
+    margin-bottom: 30px !important;
+  }
+
+  .linktree-avatar-wrapper {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 14px;
+    border-width: 2.5px;
+  }
+
+  .linktree-name {
+    font-size: 25px;
+    letter-spacing: -0.025em;
+  }
+
+  .linktree-bio {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .linktree-links {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px 14px !important;
+    width: 100% !important;
+  }
+
+  .linktree-card {
+    min-height: 52px !important;
+    padding: 5px 12px 5px 18px !important;
+  }
+
+  .linktree-card-label {
+    font-size: 14.5px !important;
+  }
+
+  .linktree-footer {
+    margin-top: 36px !important;
+  }
+}
+
+/* Simple Mode Tablet Layout (2 buttons per row) */
+@media (min-width: 641px) and (max-width: 899px) {
+  .linktree-screen {
+    max-width: 680px !important;
+    padding: 24px 20px max(110px, calc(env(safe-area-inset-bottom, 20px) + 85px)) !important;
+  }
+
+  .linktree-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px 12px !important;
+    width: 100% !important;
   }
 }
 
