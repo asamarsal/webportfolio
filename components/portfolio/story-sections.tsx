@@ -107,7 +107,18 @@ export function ExperienceSection() {
         {experiences.map((experience) => (
           <article className="experience-item reveal-up" key={experience.index}>
             <div className="experience-marker mono">
-              <span>{experience.index}</span>
+              <span className="marker-number">{experience.index}</span>
+              {experience.logo && (
+                <span className="marker-logo">
+                  <Image
+                    src={experience.logo}
+                    alt={`${experience.organization} logo`}
+                    width={56}
+                    height={56}
+                    className="marker-logo-img"
+                  />
+                </span>
+              )}
               <span className="timeline-line" aria-hidden="true" />
             </div>
             <div className="experience-content">

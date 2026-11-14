@@ -2528,6 +2528,7 @@ html[data-theme='light'] .tech-card-front::after {
   font-size: 9px;
 }
 
+.marker-number,
 .experience-marker>span:first-child {
   display: grid;
   width: 33px;
@@ -2536,6 +2537,10 @@ html[data-theme='light'] .tech-card-front::after {
   border: 1px solid var(--orange);
   border-radius: 50%;
   background: var(--background);
+}
+
+.marker-logo {
+  display: none;
 }
 
 .timeline-line {
@@ -4982,10 +4987,30 @@ html[data-theme='light'] .experience-tech-chip::after {
     gap: 12px;
   }
 
-  .experience-marker>span:first-child {
-    width: 29px;
-    height: 29px;
-    font-size: 8px;
+  .marker-number,
+  .experience-marker>span.marker-number {
+    display: none !important;
+  }
+
+  .marker-logo {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 29px !important;
+    height: 29px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 1.5px solid var(--orange) !important;
+    background: var(--surface) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .marker-logo-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
   }
 
   .experience-content {
