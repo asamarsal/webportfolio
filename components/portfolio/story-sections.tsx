@@ -1,6 +1,9 @@
-import type { CSSProperties } from 'react'
+'use client'
+
+import { useEffect, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
+import StackIcon from 'tech-stack-icons'
 import { experiences, interests, stats } from './portfolio-data'
 
 export function HeroStats() {
@@ -47,7 +50,49 @@ export function AboutSection() {
   )
 }
 
+function CapCutIcon() {
+  return (
+    <svg viewBox="-0.5 1 25.5 22" width="100%" height="100%" fill="currentColor" aria-hidden="true">
+      <path d="M24.189 6.442V2.671l-4.535 2.383V4.91c.002-1.505-1.078-2.411-2.638-2.411H2.64C.993 2.5 0 3.407 0 4.91V8.72L6.354 12 0 15.316v3.8C0 20.595 1 21.5 2.64 21.5h14.373c1.56 0 2.639-.907 2.639-2.382v-.197l4.536 2.409v-3.828L13.64 12 24.19 6.443zM9.982 13.873l7.797 4.083H2.157l7.825-4.083zm7.741-7.828l-7.742 4.057-7.825-4.057h15.567z" />
+    </svg>
+  )
+}
+
+function XIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="100%" height="100%" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
+
+function WagmiIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="100%" height="100%" fill="currentColor" aria-hidden="true">
+      <path d="M3.116 4.286H3v6.14l9 7.727l9-8.145V4.325l-9 7.495zm13.796 0L12 8.53L7.089 4.286zM21 13.878l-6.943 5.837H21zm-10.993 5.837L3 13.672v6.043z" />
+    </svg>
+  )
+}
+
 export function ExperienceSection() {
+  const [themeVariant, setThemeVariant] = useState<'dark' | 'light'>('dark')
+
+  useEffect(() => {
+    const updateVariant = () => {
+      const isLight = document.documentElement.dataset.theme === 'light'
+      setThemeVariant(isLight ? 'light' : 'dark')
+    }
+    updateVariant()
+
+    const observer = new MutationObserver(updateVariant)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section id="experience" className="experience-section" data-section>
       <div className="experience-heading layout-shell">
@@ -95,6 +140,34 @@ export function ExperienceSection() {
                   <li key={highlight}><span aria-hidden="true">↳</span>{highlight}</li>
                 ))}
               </ul>
+              {experience.technologies && experience.technologies.length > 0 && (
+                <div className="experience-tech-icons" aria-label="Technologies used">
+                  {experience.technologies.map((tech) => (
+                    <span
+                      key={tech.name}
+                      className="experience-tech-chip"
+                      title={tech.name}
+                      data-label={tech.name}
+                      aria-label={tech.name}
+                    >
+                      <span className="experience-tech-icon">
+                        {tech.customKey === 'capcut' ? (
+                          <CapCutIcon />
+                        ) : tech.customKey === 'x' ? (
+                          <XIcon />
+                        ) : tech.customKey === 'wagmi' ? (
+                          <WagmiIcon />
+                        ) : tech.icon ? (
+                          <StackIcon
+                            name={tech.icon}
+                            variant={themeVariant}
+                          />
+                        ) : null}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <ArrowUpRight className="experience-arrow" aria-hidden="true" />
           </article>

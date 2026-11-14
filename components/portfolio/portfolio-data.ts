@@ -118,6 +118,12 @@ export const technologyStack: TechnologyItem[] = [
   { name: 'Git', mark: 'G', icon: 'git', description: 'Versioned collaboration' },
 ]
 
+export type ExperienceTech = {
+  name: string
+  icon?: IconName
+  customKey?: 'capcut' | 'x' | 'wagmi'
+}
+
 export type ExperienceItem = {
   index: string
   role: string
@@ -128,6 +134,7 @@ export type ExperienceItem = {
   period?: string
   description: string
   highlights: string[]
+  technologies?: ExperienceTech[]
 }
 
 export const experiences: ExperienceItem[] = [
@@ -149,6 +156,14 @@ export const experiences: ExperienceItem[] = [
       'Mobile Application (Flutter) with OpenStreetMap routing and geolocation for technician task assignments',
       'Integrated modules with finance control, monitoring, ticketing, general affairs, and HR systems',
     ],
+    technologies: [
+      { name: 'Flutter', icon: 'flutter' },
+      { name: 'Laravel', icon: 'laravel' },
+      { name: 'Next.js', icon: 'nextjs' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Firebase', icon: 'firebase' },
+    ],
   },
   {
     index: '02',
@@ -164,6 +179,12 @@ export const experiences: ExperienceItem[] = [
       'Promoted and guided learners in free 2-week co-learning camps on Eclipse, 0G, Mantle, Ethereum, and Arbitrum',
       'Created technical blog posts, informative video content, and assisted community management',
     ],
+    technologies: [
+      { name: 'Canva', icon: 'canva' },
+      { name: 'CapCut', customKey: 'capcut' },
+      { name: 'Photoshop', icon: 'photoshop' },
+      { name: 'X', customKey: 'x' },
+    ],
   },
   {
     index: '03',
@@ -178,6 +199,11 @@ export const experiences: ExperienceItem[] = [
     highlights: [
       'Converted UI/UX design into responsive pages within the Android application',
       'Diagnosed and resolved critical bugs in the VHP Dashboard Android version',
+    ],
+    technologies: [
+      { name: 'Java', icon: 'java' },
+      { name: 'Android', icon: 'android' },
+      { name: 'Firebase', icon: 'firebase' },
     ],
   },
   {
@@ -195,6 +221,12 @@ export const experiences: ExperienceItem[] = [
       'Greens Sugarcane Monitoring (Flutter): Real-time field data input via API, location tracking, and POS machine ticket printing integration',
       'End-to-end UI/UX design, Flutter layout implementation, and API integration',
     ],
+    technologies: [
+      { name: 'Flutter', icon: 'flutter' },
+      { name: 'Java', icon: 'java' },
+      { name: 'Android', icon: 'android' },
+      { name: 'Firebase', icon: 'firebase' },
+    ],
   },
   {
     index: '05',
@@ -210,6 +242,13 @@ export const experiences: ExperienceItem[] = [
       'Reusable components and Storybook systems',
       'Back-office modules, utility APIs, SIT/UAT',
     ],
+    technologies: [
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Storybook.js', icon: 'storybook' },
+      { name: 'Java Spring Boot', icon: 'spring' },
+      { name: 'Oracle DB', icon: 'oracle' },
+      { name: 'Red Hat', icon: 'redhat' },
+    ],
   },
   {
     index: '06',
@@ -224,6 +263,16 @@ export const experiences: ExperienceItem[] = [
       'dApps and smart-contract prototypes (0G Network, Initia, Solidity, Move)',
       'Product architecture and interaction design',
       'Blockchain and on-chain game experiments',
+    ],
+    technologies: [
+      { name: 'Solidity', icon: 'solidity' },
+      { name: 'Wagmi', customKey: 'wagmi' },
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Next.js', icon: 'nextjs' },
+      { name: 'Laravel', icon: 'laravel' },
+      { name: 'Flutter', icon: 'flutter' },
+      { name: 'Java', icon: 'java' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
     ],
   },
 ]
